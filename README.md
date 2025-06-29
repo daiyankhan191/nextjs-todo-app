@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Next.js To-Do Manager
 
-## Getting Started
+A full-stack To-Do application built with **Next.js** that allows users to manage tasks, create categorized to-do sheets with deadlines, and download them as PDF. Features user authentication, MongoDB Atlas for data persistence, and optional AI integration for smart task suggestions using OpenAI or Gemini.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ✅ User Registration & Login
+- 📋 Create daily to-dos and grouped sheets
+- 🗓️ Set deadlines for task sheets
+- 📄 Download To-Do sheets as PDF
+- 🧠 Ask AI how to complete a task (OpenAI or Gemini)
+- 🗂 View saved sheets as cards, open in modal
+- 🗑️ Delete sheets anytime
+- 🌙 Fully responsive, dark-themed UI
+- ☁️ Deployed on **Vercel**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Category       | Tech Used                          |
+|----------------|------------------------------------|
+| **Frontend**   | Next.js 15, React, CSS (styled-jsx)|
+| **Backend**    | Next.js API Routes                 |
+| **Database**   | MongoDB Atlas                      |
+| **AI (Optional)** | OpenAI API or Gemini API          |
+| **PDF Generator** | jsPDF                           |
+| **Deployment** | Vercel                             |
+| **Version Control** | Git & GitHub                   |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Setup Instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/daiyankhan191/nextjs-todo-app.git
+   cd nextjs-todo-app
+2.Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ bash
+ npm install
+ 
+3. Configure environment variables:
 
-## Deploy on Vercel
+  Create a .env.local file and add the following:
+  MONGODB_URI=your_mongodb_atlas_connection_string
+  NEXT_PUBLIC_BASE_URL=http://localhost:3000
+  OPENAI_API_KEY=your_openai_key_or_gemini_key_if_used
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.Run the development server:
+  npm run dev
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5.Deploy using Vercel:
+
+ Connect your GitHub repository
+
+ Add the same environment variables in the Vercel dashboard
+
+ Click Deploy
+ 
+📁 Folder Structure
+
+src/
+├── app/
+│   ├── page.js               # Homepage
+│   ├── login/                # Login Page
+│   ├── register/             # Registration Page
+│   ├── dashboard/            # User Dashboard
+│   ├── todo-sheets/          # To-Do Sheet Manager
+│   └── api/                  # API routes (save, delete, fetch sheets)
+├── lib/
+│   └── mongodb.js            # MongoDB connection helper
+├── models/
+│   └── sheet.js              # Mongoose schema (if using)
+ 
+
+🧠 AI Integration (Optional)
+If you'd like to enable "Ask AI how to complete this task":
+
+Set OPENAI_API_KEY or Gemini key in .env.local
+
+Ensure ask-ai API route is connected
+
+Feature will call the AI model to generate guidance
+
+
+🙋‍♂️ Author
+Daiyan Khan
+GitHub: @daiyankhan191
+
+ 
