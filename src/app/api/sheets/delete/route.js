@@ -1,27 +1,25 @@
 import { NextResponse } from 'next/server';
-import connectDB from '@/lib/mongodb';
-import Sheet from '../../../models/sheet';
-
+import { connectToDatabase } from '@/lib/mongodb';
+import { ObjectId } from 'mongodb'; // ✅ This is the correct import
 
 export async function POST(req) {
+  const { id } = await req.json();
+
+  if (!id) {
+    return NextResponse.json({ success: false, message: 'Missing sheet ID' }, { status: 400 });
+  }
+
   try {
-    const { id } = await req.json();
+    const { db } = await connectToDatabase();
+    const result = await db.collection('sheets').deleteOne({ _id: new ObjectId(id) });
 
-    if (!id) {
-      return NextResponse.json({ success: false, error: 'Sheet ID is required' }, { status: 400 });
+    if (result.deletedCount === 1) {
+      return NextResponse.json({ success: true });
+    } else {
+      return NextResponse.json({ success: false, message: 'Sheet not found' }, { status: 404 });
     }
-
-    await connectDB();
-
-    const deleted = await Sheet.findByIdAndDelete(id);
-
-    if (!deleted) {
-      return NextResponse.json({ success: false, error: 'Sheet not found' }, { status: 404 });
-    }
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Delete error:', error);
-    return NextResponse.json({ success: false, error: 'Server error while deleting sheet' }, { status: 500 });
+  } catch (err) {
+    console.error('Delete error:', err);
+    return NextResponse.json({ success: false, message: 'Database error' }, { status: 500 });
   }
 }
