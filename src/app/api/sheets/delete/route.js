@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
-import Sheet from '@/models/sheet';
+import Sheet from '../../../models/sheet';
+
 
 export async function POST(req) {
   try {
